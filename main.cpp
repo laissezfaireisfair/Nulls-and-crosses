@@ -1,4 +1,4 @@
-#include "nullsAndCrosses.h"
+#include "game.h"
 
 int main(){
     nullsAndCrosses::Game game;
