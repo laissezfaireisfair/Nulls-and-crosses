@@ -8,7 +8,7 @@ namespace nullsAndCrosses {
 		field[size - y - 1][size - x - 1] = newSymbol; // TODO: exceptions handling
 	}
 	Field::Field() {
-		field = NULL;
+		field = nullptr;
 		emptyCell = 0;
 		size = 0;
 	}
