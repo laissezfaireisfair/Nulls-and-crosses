@@ -1,2 +1,3 @@
 # Nulls-and-crosses
-Training project
+Training OOP project
+Nulls and crosses game with custom field and number of players/
