@@ -1,76 +1,123 @@
 #include "game.h"
 
 namespace nullsAndCrosses {
-	/// Инициализация информации об игре
+	/// РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РёРЅС„РѕСЂРјР°С†РёРё РѕР± РёРіСЂРµ
 	void Game::initializeInfo() {
 		players = Dialog::askPlayersInfo();
 		sizeWinCombo = Dialog::askWinComboSize();
 	}
-	/// Перезапуск с очисткой поля и возможностью поменять информацию
+	/// РџРµСЂРµР·Р°РїСѓСЃРє СЃ РѕС‡РёСЃС‚РєРѕР№ РїРѕР»СЏ Рё РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊСЋ РїРѕРјРµРЅСЏС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ
 	void Game::restartGame() {
 		field.clear();
-		if (Dialog::askChangingInfo())
+		if (Dialog::askChangingInfo()) {
 			initializeInfo();
+			field.clear();
+			field.initialize(Dialog::askEmptyCellSymbol(players), Dialog::askFieldSize());
+		}
 		continueGame();
 	}
-	/// Проверка, победит ли игрок после постановки новой точки
-	bool Game::isWinOrNo(const Point newPoint, const char playerSymbol) const {
-		int counterVert = 0, counterGor = 0, counterDi1 = 0, counterDi2 = 0, size = field.getSize();
-		for (int i = 0; i < size; i++) {
-			if (field.getCell(Point(newPoint.getY(), i)) == playerSymbol) {
-				counterVert++;
-				if (counterVert >= sizeWinCombo)
-					return true;
-			}
-			else counterVert = 0;
-			if (field.getCell(Point(i, newPoint.getX())) == playerSymbol) {
-				counterGor++;
-				if (counterGor >= sizeWinCombo)
-					return true;
-			}
-			else counterGor = 0;
-			if (field.getCell(Point(i, i)) == playerSymbol) {
-				counterDi1++;
-				if (counterDi1 >= sizeWinCombo)
-					return true;
-			}
-			else counterDi1 = 0;
-			if (field.getCell(Point(size - i - 1, i)) == playerSymbol) {
-				counterDi2++;
-				if (counterDi2 >= sizeWinCombo)
-					return true;
-			}
-			else counterDi2 = 0;
+	/// Р¤СѓРЅРєС†РёСЏ РґР»СЏ РїРѕРґСЃС‡С‘С‚Р° РїРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРёС… С‚РѕС‡РµРє РЅР° РѕРґРЅРѕР№ РґРёР°РіРѕРЅР°Р»Рё
+	int  Game::countDio1WithPoint(const char player, const Point newPoint) const {
+		int maxCombo = 0, beginCoordX, beginCoordY, dioLen, size = field.getSize();
+		int nowCombo = 0;
+		if (newPoint.getX() > newPoint.getY()) {
+			beginCoordX = newPoint.getX() - newPoint.getY();
+			beginCoordY = 0;
+			dioLen = size - beginCoordX;
 		}
+		else {
+			beginCoordX = 0;
+			beginCoordY = newPoint.getY() - newPoint.getX();
+			dioLen = size - beginCoordY;
+		}
+		for (int i = 0; i < dioLen; i++) {
+			if (field.getCell(Point(beginCoordX + i, beginCoordY + i)) == player)
+				nowCombo++;
+			else {
+				maxCombo = (nowCombo > maxCombo) ? nowCombo : maxCombo;
+				nowCombo = 0;
+			}
+		}
+		return (nowCombo > maxCombo) ? nowCombo : maxCombo;
+	}
+	/// Р РЅР° РґСЂСѓРіРѕР№
+	int  Game::countDio2WithPoint(const char player, const Point newPoint) const {
+		int maxCombo = 0, nowCombo = 0, xBegin, yBegin, len, size = field.getSize();
+		if (newPoint.getX() + newPoint.getY() <= size - 1) {
+			xBegin = 0;
+			yBegin = newPoint.getX() + newPoint.getY();
+			len = yBegin + 1;
+		}
+		else {
+			xBegin = newPoint.getX() + newPoint.getY() - size + 1;
+			yBegin = size - 1;
+			len = size - xBegin;
+		}
+		for (int i = 0; i < len; i++) {
+			if (field.getCell(Point(xBegin + i, yBegin - i)) == player)
+				nowCombo++;
+			else {
+				maxCombo = (nowCombo > maxCombo) ? nowCombo : maxCombo;
+				nowCombo = 0;
+			}
+		}
+		return (nowCombo > maxCombo) ? nowCombo : maxCombo;
+	}
+	/// РџСЂРѕРІРµСЂРєР°, РїРѕР±РµРґРёС‚ Р»Рё РёРіСЂРѕРє РїРѕСЃР»Рµ РїРѕСЃС‚Р°РЅРѕРІРєРё РЅРѕРІРѕР№ С‚РѕС‡РєРё 
+	bool Game::isWinOrNo(const Point newPoint, const char playerSymbol) const {
+		int size = field.getSize(), counter1 = 0, counter2 = 0;
+		for (int i = 0; i < size; i++) { // РџРµСЂРµР±РѕСЂ СЃС‚СЂРѕРєРё Рё СЃС‚РѕР»Р±С†Р° СЃ РЅРѕРІРѕР№ С‚РѕС‡РєРѕР№
+			if (field.getCell(Point(newPoint.getX(), i)) == playerSymbol) {
+				counter1++;
+				if (counter1 >= sizeWinCombo)
+					return true;
+			}
+			else
+				counter1 = 0;
+			if (field.getCell(Point(i, newPoint.getY())) == playerSymbol) {
+				counter2++;
+				if (counter2 >= sizeWinCombo)
+					return true;
+			}
+			else
+				counter2 = 0;
+		}
+		counter1 = counter2 = 0;
+		if (countDio1WithPoint(playerSymbol, newPoint) >= sizeWinCombo)
+			return true;
+		if (countDio2WithPoint(playerSymbol, newPoint) >= sizeWinCombo)
+			return true;
 		return false;
 	}
-	/// Проверка на ничью
+	/// РџСЂРѕРІРµСЂРєР° РЅР° РЅРёС‡СЊСЋ
 	bool Game::isDrawOrNo(const int num_steps, const int size) const {
 		return num_steps < size*size;
 	}
-	/// Обработка 1 хода игры (от 1 юзера)
-	void Game::stepOfGame(Player playerNow) {
+	/// РћР±СЂР°Р±РѕС‚РєР° 1 С…РѕРґР° РёРіСЂС‹ (РѕС‚ 1 СЋР·РµСЂР°)
+	Point Game::stepOfGame(Player playerNow) {
 		Point newPoint;
 		newPoint = Dialog::askNewSymbolCoord(playerNow.getName());
 		if (!field.isCoordCorrect(newPoint)) {
 			cout << "Wrong input. There are no cell with this coords." << endl;
-			stepOfGame(playerNow);
+			return stepOfGame(playerNow);
 		}
 		if (field.getCell(newPoint) != field.getEmptySymbol()) {
 			cout << "Wrong input. This cell is already used." << endl;
-			stepOfGame(playerNow);
+			return stepOfGame(playerNow);
+			
 		}
 		field.setCell(newPoint, playerNow.getSymbol());
+		return newPoint;
 	}
-	/// Продолжить игру (без инициализации)
+	/// РџСЂРѕРґРѕР»Р¶РёС‚СЊ РёРіСЂСѓ (Р±РµР· РёРЅРёС†РёР°Р»РёР·Р°С†РёРё)
 	void Game::continueGame() {
 		Point newPoint;
 		Player playerNow;
-		int stepCounter = 0; // Для опеределения ничьей
+		int stepCounter = 0; // Р”Р»СЏ РѕРїРµСЂРµРґРµР»РµРЅРёСЏ РЅРёС‡СЊРµР№
 		do {
 			Screen::draw(field);
 			playerNow = players.front();
-			stepOfGame(playerNow);
+			newPoint = stepOfGame(playerNow);
 			stepCounter++;
 			players.pop_front();
 			players.push_back(playerNow);
@@ -79,10 +126,10 @@ namespace nullsAndCrosses {
 		if (Dialog::askStartNewOrNo())
 			restartGame();
 	}
-	/// Начать игру (с инициализацией)
+	/// РќР°С‡Р°С‚СЊ РёРіСЂСѓ (СЃ РёРЅРёС†РёР°Р»РёР·Р°С†РёРµР№)
 	void Game::newGame() {
 		initializeInfo();
-		field.initialize(Dialog::askEmptyCellSymbol(), Dialog::askFieldSize());
+		field.initialize(Dialog::askEmptyCellSymbol(players), Dialog::askFieldSize());
 		continueGame();
 	}
 }
