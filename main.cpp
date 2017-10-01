@@ -2,6 +2,6 @@
 
 int main(){
     nullsAndCrosses::Game game;
-    game.newGame();
+    game.new_game();
     return 0;
 }

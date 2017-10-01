@@ -2,10 +2,10 @@
 using namespace std;
 
 namespace nullsAndCrosses {
-	char Field::getCell(const int x, const int y) const {
+	char Field::get_cell(const int x, const int y) const {
 		return field.at(y).at(x);
 	}
-	void Field::setCell(const int x, const int y, const char newSymbol) {
+	void Field::set_cell(const int x, const int y, const char newSymbol) {
 		field.at(y).at(x) = newSymbol;
 	}
 	Field::Field() {
@@ -24,11 +24,11 @@ namespace nullsAndCrosses {
 			for (int j = 0; j < size; j++)
 				field.at(i).at(j) = emptyCell;
 	}
-	char Field::getCell(const Point point) const {
-		return getCell(point.getX(), point.getY());
+	char Field::get_cell(const Point point) const {
+		return get_cell(point.get_x(), point.get_y());
 	}
-	void Field::setCell(const Point point, const char newSymbol) {
-		setCell(point.getX(), point.getY(), newSymbol);
+	void Field::set_cell(const Point point, const char newSymbol) {
+		set_cell(point.get_x(), point.get_y(), newSymbol);
 	}
 	void Field::initialize(const char symbol, const int s) {
 		size = s;
@@ -40,15 +40,15 @@ namespace nullsAndCrosses {
 				field.at(i).push_back(emptyCell);
 		}
 	}
-	int Field::getSize() const {
+	int Field::get_size() const {
 		return size;
 	}
-	bool Field::isCoordCorrect(const Point point) const {
-		if (point.getX() >= 0 && point.getX()<size && point.getY() >= 0 && point.getY()<size)
+	bool Field::is_coord_correct(const Point point) const {
+		if (point.get_x() >= 0 && point.get_x()<size && point.get_y() >= 0 && point.get_y()<size)
 			return true;
 		return false;
 	}
-	char Field::getEmptySymbol() const {
+	char Field::get_empty_symbol() const {
 		return emptyCell;
 	}
 }

@@ -16,28 +16,28 @@ namespace nullsAndCrosses {
 			name = n;
 			symbol = sym;
 		}
-		std::string getName() { return name; }
-		char getSymbol() { return symbol; }
+		std::string get_name() { return name; }
+		char get_symbol() { return symbol; }
 	};
 
 	/// Класс операций со списком игроков
 	class OperationsWithListOfPlayers {
 	public:
-		static bool isNameContain(std::list<Player> players, std::string newName) {
+		static bool is_name_contains(std::list<Player> players, std::string newName) {
 			if (players.empty())
 				return false;
-			if (players.front().getName() == newName)
+			if (players.front().get_name() == newName)
 				return true;
 			players.pop_front();
-			return isNameContain(players, newName);
+			return is_name_contains(players, newName);
 		}
-		static bool isSymbolContain(std::list<Player> players, char newSymbol) {
+		static bool is_symbol_contains(std::list<Player> players, char newSymbol) {
 			if (players.empty())
 				return false;
-			if (players.front().getSymbol() == newSymbol)
+			if (players.front().get_symbol() == newSymbol)
 				return true;
 			players.pop_front();
-			return isSymbolContain(players, newSymbol);
+			return is_symbol_contains(players, newSymbol);
 		}
 	};
 }

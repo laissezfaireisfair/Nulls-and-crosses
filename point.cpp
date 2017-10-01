@@ -7,16 +7,16 @@ namespace nullsAndCrosses {
 		x = x1;
 		y = y1;
 	}
-	void Point::setX(const int x1) {
+	void Point::set_x(const int x1) {
 		x = x1;
 	}
-	void Point::setY(const int y1) {
+	void Point::set_y(const int y1) {
 		y = y1;
 	}
-	int Point::getX() const {
+	int Point::get_x() const {
 		return x;
 	}
-	int Point::getY() const {
+	int Point::get_y() const {
 		return y;
 	}
 }

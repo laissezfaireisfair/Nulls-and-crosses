@@ -16,21 +16,21 @@ namespace nullsAndCrosses {
 			bool yn_out;
 			cout << "(y/n)" << endl;
 			cin >> yn_in;
-			if (!stringToBool(yn_in, yn_out)) {
+			if (!string_to_bool(yn_in, yn_out)) {
 				cout << "Wrong input. You should print y or n. Try again." << endl;
 				return yn_handling();
 			}
 			return yn_out;
 		}
 		/// Возвращает статус операции
-		static bool stringToChar(const string in, char &out) {
+		static bool string_to_char(const string in, char &out) {
 			if (in.length() > 1)
 				return false;
 			out = in.at(0);
 			return true;
 		}
 		/// Возвращает статус операции
-		static bool stringToInt(string in, int &out) {
+		static bool string_to_int(string in, int &out) {
 			out = 0;
 			for (unsigned int i = 0; i < in.length(); i++) {
 				if (in.at(i) > '9' || in.at(i) < '0')
@@ -41,7 +41,7 @@ namespace nullsAndCrosses {
 			return true;
 		}
 		/// Возвращает статус операции
-		static bool stringToBool(string in, bool &out) {
+		static bool string_to_bool(string in, bool &out) {
 			if (in.length() > 1)
 				return false;
 			if (in.at(0) == 'y') {
@@ -54,28 +54,28 @@ namespace nullsAndCrosses {
 			}
 			return false;
 		}
-		static string askPlayers_name() {
+		static string ask_players_name() {
 			string name;
 			cout << "Print your name." << endl;
 			cin >> name;
 			return name;
 		}
-		static char askPlayers_symbol() {
+		static char ask_players_symbol() {
 			string symbol;
 			char symbolC;
 			cout << "Print your symbol." << endl;
 			cin >> symbol;
-			if (!(stringToChar(symbol, symbolC))) {
+			if (!(string_to_char(symbol, symbolC))) {
 				cout << "Wrong input. You should print symbol." << endl;
-				return askPlayers_symbol();
+				return ask_players_symbol();
 			}
 			return symbolC;
 		}
-		static bool askPlayers_ifWantAddNew() {
+		static bool ask_players_if_want_add_new() {
 			cout << "Would you like to add more players?" << endl;
 			return yn_handling();
 		}
-		static void playerWins(string name, bool noOne) {
+		static void player_wins(string name, bool noOne) {
 			if (noOne) {
 				cout << "Draw!" << endl;
 				return;
@@ -84,96 +84,96 @@ namespace nullsAndCrosses {
 		}
 	public:
 		/// Запрос информации об игроках
-		static list <Player> askPlayersInfo() {
+		static list <Player> ask_players_info() {
 			Screen::clear();
 			list <Player>(players);
 			string name;
 			char symbol;
 			do {
 				do {
-					name = askPlayers_name();
-				} while (OperationsWithListOfPlayers::isNameContain(players, name));
+					name = ask_players_name();
+				} while (OperationsWithListOfPlayers::is_name_contains(players, name));
 				do {
-					symbol = askPlayers_symbol();
-				} while (OperationsWithListOfPlayers::isSymbolContain(players, symbol));
+					symbol = ask_players_symbol();
+				} while (OperationsWithListOfPlayers::is_symbol_contains(players, symbol));
 				players.push_back(Player(name, symbol));
-			} while (askPlayers_ifWantAddNew());
+			} while (ask_players_if_want_add_new());
 			return players;
 		}
 		/// Спросить хотят ли начать новую игру
-		static bool askStartNewOrNo() {
+		static bool ask_start_new_or_no() {
 			cout << "Would you like to start new game?" << endl;
 			return yn_handling();
 		}
 		/// Отрисовать поле и запросить координаты нового символа
-		static Point askNewSymbolCoord(string name) {
+		static Point ask_new_symbol_coord(string name) {
 			// Не очищаем экран, чтобы не стереть отображение поля
 			string x_in, y_in;
 			int x_out, y_out;
 			cout << name << ", where do you prefer to put symbol? (x, y)" << endl;
 			cin >> x_in >> y_in;
-			if (!stringToInt(x_in, x_out) || !stringToInt(y_in, y_out)) {
+			if (!string_to_int(x_in, x_out) || !string_to_int(y_in, y_out)) {
 				cout << "Wrong input. You should print coords of new point. Try again" << endl;
-				return askNewSymbolCoord(name);
+				return ask_new_symbol_coord(name);
 			}
 			x_out--; // Пользователь нумерует с единицы, а мы с нуля
 			y_out--;
 			return Point(x_out, y_out);
 		}
 		/// Спросить размер поля
-		static int askFieldSize() {
+		static int ask_field_size() {
 			string size_in;
 			int size_out;
 			cout << "What size of field would you prefer?" << endl;
 			cin >> size_in;
-			if (!stringToInt(size_in, size_out)) {
+			if (!string_to_int(size_in, size_out)) {
 				cout << "Wrong input. You should print number. Try again." << endl;
-				return askFieldSize();
+				return ask_field_size();
 			}
 			if (size_out > MAX_RECOMENDED_SIZE_OF_FIELD) {
 				cout << "Are you sure? It can be too large." << endl;
 				if (!yn_handling())
-					return askFieldSize();
+					return ask_field_size();
 			}
 			return size_out;
 		}
 		/// Спросить длину, достаточную для победы
-		static int askWinComboSize() {
+		static int ask_win_combo_size() {
 			int size_out;
 			string size_in;
 			cout << "What size of win-combo would you like?" << endl;
 			cin >> size_in;
-			if (!(stringToInt(size_in, size_out))) {
+			if (!(string_to_int(size_in, size_out))) {
 				cout << "Wrong input. You should print number. Try again." << endl;
-				return askWinComboSize();
+				return ask_win_combo_size();
 			}
 			return size_out;
 		}
 		/// Спросить символ для не занятых клеток
-		static char askEmptyCellSymbol(list<Player> players) {
+		static char ask_empty_cell_symbol(list<Player> players) {
 			char out;
 			string in;
 			cout << "What empty cell symbol would you prefer?" << endl;
 			cin >> in;
-			if (!(stringToChar(in, out))) {
+			if (!(string_to_char(in, out))) {
 				cout << "Wrong input. You should print symbol. Try again." << endl;
-				return askEmptyCellSymbol(players);
+				return ask_empty_cell_symbol(players);
 			}
-			if (OperationsWithListOfPlayers::isSymbolContain(players, out)) {
+			if (OperationsWithListOfPlayers::is_symbol_contains(players, out)) {
 				cout << "Cheater! This symbol is already selected." << endl;
-				return askEmptyCellSymbol(players);
+				return ask_empty_cell_symbol(players);
 			}
 			return out;
 		}
 		/// Спросить, хотят ли внести изменения в параметры
-		static bool askChangingInfo() {
+		static bool ask_changing_info() {
 			cout << "Would you like to change some preferences?" << endl;
 			return yn_handling();
 		}
 		/// Вывести результаты игры
-		static void printFinalResults(Field &field, string nameWinner, bool draw) {
+		static void print_final_results(Field &field, string nameWinner, bool draw) {
 			Screen::draw(field);
-			playerWins(nameWinner, draw);
+			player_wins(nameWinner, draw);
 		}
 	};
 }
