@@ -5,13 +5,13 @@
 #include "field.h"
 
 namespace nullsAndCrosses {
-	/// Класс для работы с выводом
+	/// РљР»Р°СЃСЃ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РІС‹РІРѕРґРѕРј
 	class Screen {
 		static std::string getField(Field &field) {
 			std::string str;
 			for (int i = 0; i < field.getSize(); i++) {
 				for (int j = 0; j < field.getSize(); j++) {
-					str += field.getCell(Point(i, j));
+					str += field.getCell(Point(j, i));
 					if (j < field.getSize() - 1)
 						str += " ";
 					else
@@ -22,7 +22,8 @@ namespace nullsAndCrosses {
 		}
 	public:
 		static void clear() {
-			system("clear");
+			//system("clear"); // For Linux
+			system("cls"); // For Windows
 		}
 		static void draw(Field &field) {
 			clear();
