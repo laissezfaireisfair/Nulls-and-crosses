@@ -2,24 +2,24 @@
 #include "point.h"
 #include <vector>
 
-namespace nullsAndCrosses { // TODO: Rewrite this with lists or vectors
+namespace nullsAndCrosses {
 	/// Класс для работы с полем
 	class Field {
 		std::vector<std::vector<char>> field;
 		char emptyCell;
 		int size;
-		char get_cell(const int x, const int y) const;
-		void set_cell(const int x, const int y, const char newSymbol);
+		char get_cell(const int xCoord, const int yCoord) const;
+		void set_cell(const int xCoord, const int yCoord, const char newSymbol);
 	public:
 		Field();
-		Field(const char symbol, const int s);
+		Field(const char emptyCellSymbol, const int fieldSize);
 		~Field();
 		void clear();
-		char get_cell(const Point point) const;
-		void set_cell(const Point point, const char newSymbol);
-		void initialize(const char symbol, const int s);
+		char get_cell(const Point coords) const;
+		void set_cell(const Point coords, const char newSymbol);
+		void initialize(const char emptyCellSymbol, const int fieldSize);
 		int get_size() const;
-		bool is_coord_correct(const Point point) const;
+		bool is_coords_correct(const Point coords) const;
 		char get_empty_symbol() const;
 	};
 }
