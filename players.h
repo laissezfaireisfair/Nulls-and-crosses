@@ -3,7 +3,7 @@
 #include <list>
 
 namespace nullsAndCrosses {
-	/// Класс для хранения информации об игроке
+	/// РљР»Р°СЃСЃ РґР»СЏ С…СЂР°РЅРµРЅРёСЏ РёРЅС„РѕСЂРјР°С†РёРё РѕР± РёРіСЂРѕРєРµ
 	class Player {
 		std::string name;
 		char symbol;
@@ -20,7 +20,7 @@ namespace nullsAndCrosses {
 		char getSymbol() { return symbol; }
 	};
 
-	/// Класс операций со списком игроков
+	/// РљР»Р°СЃСЃ РѕРїРµСЂР°С†РёР№ СЃРѕ СЃРїРёСЃРєРѕРј РёРіСЂРѕРєРѕРІ
 	class OperationsWithListOfPlayers {
 	public:
 		static bool isNameContain(std::list<Player> players, std::string newName) {
