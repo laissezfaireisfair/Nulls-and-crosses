@@ -1,10 +1,12 @@
 #pragma once
 #include "point.h"
+#include <vector>
 
 namespace nullsAndCrosses { // TODO: Rewrite this with lists or vectors
-	/// Класс для работы с полем
+	/// РљР»Р°СЃСЃ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РїРѕР»РµРј
 	class Field {
-		char ** field, emptyCell;
+		std::vector<std::vector<char>> field;
+		char emptyCell;
 		int size;
 		char getCell(const int x, const int y) const;
 		void setCell(const int x, const int y, const char newSymbol);
