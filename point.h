@@ -1,7 +1,7 @@
 #pragma once
 
 namespace nullsAndCrosses {
-	 /// Класс для хранения точки
+	 /// РљР»Р°СЃСЃ РґР»СЏ С…СЂР°РЅРµРЅРёСЏ С‚РѕС‡РєРё
     class Point{
         int x, y;
     public:
