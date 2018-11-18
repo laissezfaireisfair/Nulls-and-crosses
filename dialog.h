@@ -23,35 +23,36 @@ namespace nullsAndCrosses {
 			return yn_out;
 		}
 		/// Возвращает статус операции
-		static bool string_to_char(const string in, char &out) {
+		static char string_to_char(const string in, errorStatus &status) {
+			status = noError;
 			if (in.length() > 1)
-				return false;
-			out = in.at(0);
-			return true;
+				status = warning;
+			return char(in.at(0));
 		}
 		/// Возвращает статус операции
-		static bool string_to_int(string in, int &out) {
-			out = 0;
+		static int string_to_int(string in, errorStatus &status) {
+			int out = 0;
+			status = noError;
 			for (unsigned int i = 0; i < in.length(); i++) {
-				if (in.at(i) > '9' || in.at(i) < '0')
-					return false;
+				if (in.at(i) > '9' || in.at(i) < '0') {
+					status = fatalError;
+					return -1;
+				}
 				out *= 10;
 				out += in.at(i) - '0';
 			}
-			return true;
+			return out;
 		}
 		/// Возвращает статус операции
-		static bool string_to_bool(string in, bool &out) {
+		static bool string_to_bool(string in, errorStatus &status) {
+			errorStatus = noError;
 			if (in.length() > 1)
+				errorStatus = warning;
+			if (in.at(0) == 'y')
+				return true;
+			if (in.at(0) == 'n')
 				return false;
-			if (in.at(0) == 'y') {
-				out = true;
-				return true;
-			}
-			if (in.at(0) == 'n') {
-				out = false;
-				return true;
-			}
+			errorStatus = fatalError;
 			return false;
 		}
 		static string ask_players_name() {
