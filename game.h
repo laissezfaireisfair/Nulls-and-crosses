@@ -9,6 +9,9 @@
 using namespace std;
 
 namespace nullsAndCrosses {
+  /// Перечисление обработки ошибок
+  enum errorStatus {noError, warning, fatalError};
+
 	 /// Класс обработки игры
     class Game {
         list<Player> (players);
