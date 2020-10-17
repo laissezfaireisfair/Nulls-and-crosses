@@ -1,15 +1,15 @@
 #pragma once
 
 namespace nullsAndCrosses {
-	 /// Класс для хранения точки
     class Point{
-        int x, y;
     public:
 		Point();
-		Point(const int xCoord, const int yCoord);
-		void set_x(const int xCoord);
-		void set_y(const int yCoord);
-		int get_x() const;
-		int get_y() const;
+		Point(int x, int y);
+		int const & x() const;
+        int const & y() const;
+        void set_x(int x);
+        void set_y(int y);
+    private:
+        int m_x, m_y;
     };
 }
