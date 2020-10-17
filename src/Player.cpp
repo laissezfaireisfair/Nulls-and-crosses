@@ -3,7 +3,7 @@
 namespace nullsAndCrosses {
     Player::Player() : Player("Noname", '0') {}
 
-    Player::Player(std::string const & name, char symbol) :
+    Player::Player(std::string const & name, char const symbol) :
         m_name(name),
         m_symbol(symbol)
     {}
