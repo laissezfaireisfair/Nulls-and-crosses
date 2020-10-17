@@ -14,8 +14,7 @@ namespace nullsAndCrosses{
         Player const & player(size_t position) const;
         bool is_name_used(std::string const & name) const;
         bool is_symbol_used(char symbol) const;
-        ~PlayerManager();
     private:
-        vector<std::shared_ptr<Player>> m_players;
+        std::vector<std::shared_ptr<Player>> m_players;
     };
 }
