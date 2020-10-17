@@ -11,8 +11,8 @@ namespace nullsAndCrosses {
 		char const & at(Point const & place) const;
 		unsigned int const & get_size() const;
 	private:
-		std::vector<std::vector<char>> field;
-		char const emptyCellSymbol;
-		unsigned int const size;
+		std::vector<std::vector<char>> m_field;
+		char const m_emptyCellSymbol;
+		unsigned int const m_size;
 	};
 }
