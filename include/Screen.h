@@ -1,7 +1,4 @@
 #pragma once
-#include <iostream>
-#include <cstdlib>
-#include <string>
 #include "Field.h"
 
 namespace nullsAndCrosses {
