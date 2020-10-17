@@ -1,10 +1,7 @@
 #include "Point.h"
 
 namespace nullsAndCrosses {
-	Point::Point() :
-		m_x(0),
-		m_y(0)
-	{}
+	Point::Point() : Point(0, 0) {}
 
 	Point::Point(int const x, int const y) :
 		m_x(x),
