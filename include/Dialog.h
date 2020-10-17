@@ -8,7 +8,6 @@
 using namespace std;
 
 namespace nullsAndCrosses {
-	static const int MAX_RECOMENDED_SIZE_OF_FIELD = 35;
 	/// Класс взаимодействия с пользователем
 	class Dialog {
 		static bool yn_handling() {
