@@ -1,6 +1,5 @@
 #pragma once
 #include <string>
-#include <iostream>
 #include "Player.h"
 #include "Point.h"
 
@@ -11,9 +10,9 @@ namespace nullsAndCrosses {
 		static Player ask_player_info();
 		static bool ask_player_if_want_to_add_new();
 		static bool ask_if_start_new_game();
-		static Point ask_new_step_position();
+		static Point ask_new_step_position(Player const & player);
 		static unsigned int ask_field_size();
-		static void warn_field_too_large();
+		static void warn_field_too_large(unsigned int sizeLimit);
 		static unsigned int ask_win_length_size();
 		static char ask_empty_cell_symbol();
 		static bool ask_if_change_preferences();
