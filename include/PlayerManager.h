@@ -4,7 +4,7 @@
 #include <string>
 #include "Player.h"
 
-namespace nullAndCrosses{
+namespace nullsAndCrosses{
     class PlayerManager {
     public:
         PlayerManager();
