@@ -16,15 +16,11 @@ namespace nullsAndCrosses {
 	}
 
 	char & Field::at(Point const & place) {
-		if (place.x() > m_size || place.y() > m_size)
-			throw std::out_of_range("No such cell in the field");
-		return m_field[place.y()][place.x()]
+		return m_field.at(place.y()).at(place.x());
 	}
 
 	char const & Field::at(Point const & place) const {
-		if (place.x() > m_size || place.y() > m_size)
-			throw std::out_of_range("No such cell in the field");
-		return m_field[place.y()][place.x()]
+		return m_field.at(place.y()).at(place.x());
 	}
 
 	unsigned int const & Field::get_size() const {
