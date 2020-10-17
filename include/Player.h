@@ -7,9 +7,9 @@ namespace nullsAndCrosses {
         Player();
 		Player(std::string const & name, char symbol);
 		std::string const & get_name();
-		char get_symbol();
+		char const & get_symbol();
 	private:
-		std::string m_name;
-		char m_symbol;
+		std::string const m_name;
+		char const m_symbol;
 	};
 }
