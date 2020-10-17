@@ -9,10 +9,10 @@ namespace nullsAndCrosses {
 		void clear();
 		char & at(Point const & place);
 		char const & at(Point const & place) const;
-		unsigned int get_size() const;
+		unsigned int const & get_size() const;
 	private:
 		std::vector<std::vector<char>> field;
-		char emptyCellSymbol;
-		unsigned int size;
+		char const emptyCellSymbol;
+		unsigned int const size;
 	};
 }
