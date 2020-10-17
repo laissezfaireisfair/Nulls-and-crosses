@@ -2,9 +2,9 @@
 #include <string>
 #include <iostream>
 #include <list>
-#include "field.h"
-#include "dialog.h"
-#include "players.h"
+#include "Field.h"
+#include "Dialog.h"
+#include "Player.h"
 
 using namespace std;
 

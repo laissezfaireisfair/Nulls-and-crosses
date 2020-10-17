@@ -2,7 +2,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <string>
-#include "field.h"
+#include "Field.h"
 
 namespace nullsAndCrosses {
 	/// Класс для работы с выводом

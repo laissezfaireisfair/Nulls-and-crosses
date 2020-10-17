@@ -2,9 +2,9 @@
 #include <string>
 #include <iostream>
 #include <list>
-#include "players.h"
-#include "point.h"
-#include "screen.h"
+#include "Player.h"
+#include "Point.h"
+#include "Screen.h"
 using namespace std;
 
 namespace nullsAndCrosses {

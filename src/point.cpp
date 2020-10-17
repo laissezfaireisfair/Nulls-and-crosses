@@ -1,4 +1,4 @@
-#include "point.h"
+#include "Point.h"
 namespace nullsAndCrosses {
 	Point::Point() {
 		x = y = 0;

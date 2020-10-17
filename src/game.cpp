@@ -1,4 +1,4 @@
-#include "game.h"
+#include "Game.h"
 
 namespace nullsAndCrosses {
 	/// Инициализация информации об игре
@@ -63,7 +63,7 @@ namespace nullsAndCrosses {
 		}
 		return (nowCombo > maxCombo) ? nowCombo : maxCombo;
 	}
-	/// Проверка, победит ли игрок после постановки новой точки 
+	/// Проверка, победит ли игрок после постановки новой точки
 	bool Game::is_win_or_no(const Point newPoint, const char playerSymbol) const {
 		int size = field.get_size(), counter1 = 0, counter2 = 0;
 		for (int i = 0; i < size; i++) { // Перебор строки и столбца с новой точкой
@@ -104,7 +104,7 @@ namespace nullsAndCrosses {
 		if (field.get_cell(newPoint) != field.get_empty_symbol()) {
 			cout << "Wrong input. This cell is already used." << endl;
 			return step_of_game(playerNow);
-			
+
 		}
 		field.set_cell(newPoint, playerNow.get_symbol());
 		return newPoint;
