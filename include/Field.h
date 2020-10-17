@@ -5,7 +5,7 @@
 namespace nullsAndCrosses {
 	class Field {
 	public:
-		Field(char emptyCellSymbol, unsigned int fieldSize);
+		Field(char emptyCellSymbol, unsigned int size);
 		void clear();
 		char & at(Point const & place);
 		char const & at(Point const & place) const;
