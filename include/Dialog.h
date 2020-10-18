@@ -1,5 +1,4 @@
 #pragma once
-#include <string>
 #include "Player.h"
 #include "Point.h"
 
@@ -17,7 +16,7 @@ namespace nullsAndCrosses {
 		static char ask_empty_cell_symbol();
 		static bool ask_if_change_preferences();
 		static void print_draw_message();
-		static void print_winner(std::string const & name);
+		static void print_winner(Player const & winner);
 		static void warn_name_already_used();
 		static void warn_symbol_already_used();
 	private:

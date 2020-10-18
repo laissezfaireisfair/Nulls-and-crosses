@@ -67,8 +67,8 @@ namespace nullsAndCrosses {
 		std::cout << "Draw." << std::endl;
 	}
 
-	void Dialog::print_winner(std::string const & name) {
-		std::cout << name << "is winner!" << std::endl;
+	void Dialog::print_winner(Player const & winner) {
+		std::cout << winner.get_name() << "is winner!" << std::endl;
 	}
 
 	bool Dialog::ask_yes_or_no() {
