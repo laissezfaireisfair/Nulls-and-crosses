@@ -40,13 +40,13 @@ namespace nullsAndCrosses {
 		std::cout << sizeLimit << std::endl;
 	}
 
-	unsigned int Dialog::ask_win_length_size() {
+	unsigned int Dialog::ask_win_length() {
 		std::cout << "How large should be winning combo?" << std::endl;
 		unsigned int winLength;
 		if (std::cin >> winLength)
 			return winLength;
 		std::cout << "Wrong input. Try again." << std::endl;
-		return ask_win_length_size();
+		return ask_win_length();
 	}
 
 	char Dialog::ask_empty_cell_symbol() {

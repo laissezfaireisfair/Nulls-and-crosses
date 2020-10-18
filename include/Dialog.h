@@ -13,14 +13,17 @@ namespace nullsAndCrosses {
 		static Point ask_new_step_position(Player const & player);
 		static unsigned int ask_field_size();
 		static void warn_field_too_large(unsigned int sizeLimit);
-		static unsigned int ask_win_length_size();
+		static unsigned int ask_win_length();
 		static char ask_empty_cell_symbol();
 		static bool ask_if_change_preferences();
 		static void print_draw_message();
 		static void print_winner(std::string const & name);
+		static void warn_name_already_used();
+		static void warn_symbol_already_used();
 	private:
 		static bool ask_yes_or_no();
 		static std::string ask_players_name();
 		static char ask_players_personal_symbol();
 	};
 }
+govno
